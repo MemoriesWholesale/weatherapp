@@ -16,9 +16,6 @@ function pageLoader(){
     const searchForm = document.querySelector('#find-city-form');
     searchForm.addEventListener('submit',e=>findCity(e));
     const clinks = document.getElementsByClassName('city-link')
-    for (let clink of clinks){
-        clink.addEventListener('click',geolocateCity(clink.name.split('_')[0],clink.name.split('_')[1]))
-    }
 }
 
 function changeDiv(e){
@@ -47,6 +44,11 @@ function findCity(event){
             otherCity.innerHTML = `Did you mean <a href="#" class="city-link" name="${cityMatches[i].city}_${cityStates[i]}">${cityMatches[i].city}, ${cityStates[i]}</a>?`
             otherCities.appendChild(otherCity)
         }
+        const clinks = document.getElementsByClassName('city-link')
+        for (let clink of clinks){
+        console.log('hello')
+        clink.addEventListener('click',()=>geolocateCity(clink.name.split('_')[0],clink.name.split('_')[1]))
+    }
     }
     geolocateCity(cityName,cityStates[0])
 }
